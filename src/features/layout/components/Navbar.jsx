@@ -85,7 +85,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-4 left-4 right-4 z-50">
-      <div className="relative mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-6 w-[95%] md:w-fit">
+      <div className="relative mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-6 w-full md:w-fit">
         <div className="flex items-center justify-between px-4 py-3">
           {/* Grup kiri: Logo */}
           <div className="flex items-center gap-2 mr-8">
