@@ -86,7 +86,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-4 left-4 right-4 z-50">
       <div className="relative mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg px-6 w-full md:w-fit">
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between w-full md:px-6 py-3">
           {/* Grup kiri: Logo */}
           <div className="flex items-center gap-2 mr-8">
             <img src={himtiLogo} alt="HIMTI" className="h-10" />
@@ -96,7 +96,7 @@ export default function Navbar() {
           </div>
 
           {/* Grup kanan: Navigasi + Tombol */}
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-7">
             <nav className="flex items-center gap-5 text-gray-600">
               <Eachable
                 datas={navLinks}
