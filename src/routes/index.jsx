@@ -13,6 +13,7 @@ import DosenPage from "../features/dosen/view/DosenPage";
 import KlinikPage from "../features/klinik/view/KlinikPage";
 import SertifikatPage from "../features/sertifikat/view/SertifikatPage";
 import PendaftaranPage from "../features/pendaftaran/view/PendaftaranPage";
+import NotFound from "../features/display/view/NotFound";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,9 @@ export default function AppRoutes() {
           <Route path="/sertifikat" element={<SertifikatPage />} />
           <Route path="/pendaftaran" element={<PendaftaranPage />} />
         </Route>
+
+        {/* Not Found Page */}
+         <Route path="*" element={<NotFound />} />
       </Routes>
   );
 }
