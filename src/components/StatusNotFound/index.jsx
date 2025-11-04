@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Poppins } from "../Text/index";
+import { Poppins } from "../ui/Text";
 import PropTypes from "prop-types";
 
 export const StatusDisplay = ({

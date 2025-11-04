@@ -1,5 +1,6 @@
-import { StatusDisplay } from "../../global/components/StatusDisplay";
-import notFoundAnimation from "../../../core/assets/lottie-.json";
+import React from "react";
+import { StatusDisplay } from "../../../components/StatusNotFound";
+import notFoundAnimation from "../../../core/assets/animation/not-found.json";
 
 export default function NotFound() {
   return (
