@@ -16,7 +16,9 @@ const PendaftaranForm = ({
   const [formData, setFormData] = useState({
     name: '',
     class: '',
+    nim: '',
     generation: '',
+    phoneNumber: '',
     image: null,
     registrationTypeId: event.id,
     eventId: event.eventId,
@@ -119,6 +121,19 @@ const PendaftaranForm = ({
                     />
                   </div>
 
+                  <div>
+                    <label htmlFor="nim" className="block text-sm font-medium">
+                      NIM
+                    </label>
+                    <Input
+                      name="nim"
+                      id="nim"
+                      onChange={handleChange}
+                      value={formData.nim}
+                      required
+                    />
+                  </div>
+
                   {isClassRequired && (
                     <div>
                       <label
@@ -155,6 +170,20 @@ const PendaftaranForm = ({
                       required
                     />
                   </div>
+
+                  <div>
+                    <label htmlFor="phoneNumber" className="block text-sm font-medium">
+                      Nomor WhatsApp
+                    </label>
+                    <Input
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      type="tel"
+                      onChange={handleChange}
+                      value={formData.phoneNumber}
+                      required
+                    />
+                  </div>                  
 
                   {isBootcamp && (
                     <div>

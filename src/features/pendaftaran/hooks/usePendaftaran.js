@@ -52,12 +52,20 @@ export const usePendaftaran = () => {
     payload.append('class', formData.class);
     payload.append('registrationTypeId', formData.registrationTypeId);
 
-    if (formData.image) {
-      payload.append('image', formData.image);
+    if (formData.phoneNumber) {
+      payload.append('phoneNumber', formData.phoneNumber);
+    }
+
+    if (formData.nim) {
+      payload.append('nim', formData.nim.toString());
     }
 
     if (formData.generation && !isNaN(Number(formData.generation))) {
       payload.append('generation', Number(formData.generation));
+    }
+
+    if (formData.image) {
+      payload.append('image', formData.image);
     }
 
     if (formData.eventId) {
@@ -68,7 +76,7 @@ export const usePendaftaran = () => {
         message: 'Gagal memuat eventId. Coba refresh halaman.',
       });
       setIsSubmitting(false);
-      return; // Hentikan submit jika eventId tidak ada
+      return;
     }
 
     console.log('Payload API KELAR');
