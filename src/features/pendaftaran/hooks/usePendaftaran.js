@@ -21,7 +21,7 @@ export const usePendaftaran = () => {
         id: item.id,
         title: item.name,
         category: item.type,
-        image: item.image || `/images/himti-logo.png`,
+        image: item.image || `/images/bootcmp2025.jpg`,
         description:
           item.description ||
           `Pendaftaran untuk ${item.name} periode ${item.year}.`,

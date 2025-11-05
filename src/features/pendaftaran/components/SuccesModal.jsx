@@ -7,7 +7,6 @@ import successAnimation from "../../../core/assets/animation/succes.json";
 import { ExternalLink } from "lucide-react";
 
 export const SuccessModal = ({
-  message,
   onClose,
   show,
   title = "Pendaftaran Berhasil!",
@@ -39,8 +38,11 @@ export const SuccessModal = ({
               {title}
             </h3>
 
-            <Poppins className="mb-6 text-gray-600">
-              {message || "Anda berhasil terdaftar!"}
+            <Poppins className="mb-6 text-gray-600 ">
+              <p>Selamat! Pendaftaran Anda berhasil.</p>
+              <p>
+                <i>Dapatkan informasi penting dan update terbaru dengan bergabung ke grup WhatsApp resmi di bawah ini.</i>
+              </p>
             </Poppins>
 
           {link && (
@@ -55,7 +57,7 @@ export const SuccessModal = ({
               className="mb-4 inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-3 rounded-lg transition-all duration-200 shadow-sm"
             >
               <ExternalLink size={18} />
-              Dapatkan Akses Eksklusif
+              Gabung Grup WhatsApp
             </a>
           )}
           </motion.div>
