@@ -56,6 +56,10 @@ export const usePendaftaran = () => {
       payload.append('image', formData.image);
     }
 
+    if (formData.nim && !isNaN(Number(formData.nim))) {
+      payload.append('nim', Number(formData.nim));
+    }
+
     if (formData.generation && !isNaN(Number(formData.generation))) {
       payload.append('generation', Number(formData.generation));
     }

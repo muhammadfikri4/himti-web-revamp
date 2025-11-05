@@ -16,6 +16,7 @@ const PendaftaranForm = ({
   const [formData, setFormData] = useState({
     name: '',
     class: '',
+    nim: '',
     generation: '',
     image: null,
     registrationTypeId: event.id,
@@ -115,6 +116,19 @@ const PendaftaranForm = ({
                       id="name"
                       onChange={handleChange}
                       value={formData.name}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="nim" className="block text-sm font-medium">
+                      NIM
+                    </label>
+                    <Input
+                      name="nim"
+                      id="nim"
+                      onChange={handleChange}
+                      value={formData.nim}
                       required
                     />
                   </div>
