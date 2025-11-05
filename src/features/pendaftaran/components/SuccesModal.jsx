@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import Lottie from "lottie-react";
-import { NavLink } from "react-router";
-import { CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../Button";
-import { Poppins } from "../Text";
+import { Poppins } from "../../../components/ui/Text";
 import successAnimation from "../../../core/assets/animation/succes.json";
+import { ExternalLink } from "lucide-react";
 
 export const SuccessModal = ({
   message,
   onClose,
   show,
   title = "Pendaftaran Berhasil!",
+  link, 
 }) => {
   return (
     <AnimatePresence>
@@ -39,21 +38,26 @@ export const SuccessModal = ({
             <h3 className="mb-2 text-2xl font-bold text-gray-900 -mt-4">
               {title}
             </h3>
-            <Poppins className="mb-8 text-gray-600">
+
+            <Poppins className="mb-6 text-gray-600">
               {message || "Anda berhasil terdaftar!"}
             </Poppins>
 
-            <div className="flex justify-center">
-              <NavLink to="/" >
-              <Button
-                onClick={onClose}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold"
-                size="lg"
-              >
-                Yeay! Selesai, Kembali ke Beranda
-              </Button>
-              </NavLink>
-            </div>
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                onClose(); 
+                setTimeout(() => 100); 
+              }}
+              className="mb-4 inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-3 rounded-lg transition-all duration-200 shadow-sm"
+            >
+              <ExternalLink size={18} />
+              Dapatkan Akses Eksklusif
+            </a>
+          )}
           </motion.div>
         </motion.div>
       )}

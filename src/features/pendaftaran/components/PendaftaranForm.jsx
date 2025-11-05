@@ -4,7 +4,7 @@ import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
 import { X, AlertTriangle, LoaderCircle, UploadCloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion'; 
-import { SuccessModal } from '../../../components/ui/SuccessModal'; 
+import { SuccessModal } from './SuccesModal'; 
 
 const PendaftaranForm = ({
   event,
@@ -12,6 +12,7 @@ const PendaftaranForm = ({
   onSubmit,
   isSubmitting,
   formStatus,
+  setFormStatus,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -63,8 +64,34 @@ const PendaftaranForm = ({
   };
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+
+    if (isBootcamp && !formData.image) {
+    setFormStatus({
+      type: 'error',
+      message: 'Foto bukti pembayaran wajib diunggah!',
+      link: '',
+    });
+    return; 
+  }
+
     onSubmit(formData);
+  };
+
+  const handleCloseForm = () => {
+    setFormData({
+      name: '',
+      class: '',
+      nim: '',
+      generation: '',
+      phoneNumber: '',
+      image: null,
+      registrationTypeId: event.id,
+      eventId: event.eventId,
+    });
+    setImagePreview(null);
+    setFormStatus({ type: '', message: '', link: '' });
+    onClose();
   };
 
   const isClassRequired =
@@ -79,10 +106,14 @@ const PendaftaranForm = ({
 
   return (
     <>
-      <SuccessModal
-        show={formStatus.type === 'success'}
+     <SuccessModal
+        show={formStatus.type === "success"}
         message={formStatus.message}
-        onClose={onClose}
+        link={formStatus.link}
+        onClose={() => {
+          setFormStatus({ type: "", message: "", link: "" });
+          onClose(); 
+        }}
       />
 
       <AnimatePresence>
@@ -100,7 +131,7 @@ const PendaftaranForm = ({
                     Form Pendaftaran: {event.title}
                   </h2>
                   <button
-                    onClick={onClose}
+                    onClick={handleCloseForm}
                     className="text-gray-400 hover:text-gray-600"
                   >
                     <X />
@@ -230,7 +261,6 @@ const PendaftaranForm = ({
                               className="hidden"
                               onChange={handleFileChange}
                               accept="image/png, image/jpeg, image/jpg"
-                              required={!imagePreview}
                               ref={fileInputRef}
                             />
                           </div>

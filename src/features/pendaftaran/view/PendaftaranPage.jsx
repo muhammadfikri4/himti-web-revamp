@@ -15,6 +15,7 @@ const PendaftaranPage = () => {
     isSubmitting,
     submitRegistration,
     refetch,
+    setFormStatus,
   } = usePendaftaran();
 
   if (loading) return <LoadingStatus message="Memuat Pendaftaran..." />;
@@ -28,6 +29,7 @@ const PendaftaranPage = () => {
       submitRegistration={submitRegistration}
       isSubmitting={isSubmitting}
       formStatus={formStatus}
+      setFormStatus={setFormStatus}
     />
   );
 };

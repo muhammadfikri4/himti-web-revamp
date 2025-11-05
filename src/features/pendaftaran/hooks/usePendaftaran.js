@@ -85,13 +85,19 @@ export const usePendaftaran = () => {
     }
 
     try {
-      await createEventRegistration(payload);
-      setFormStatus({ type: 'success', message: 'Anda berhasil terdaftar!' });
+      const response = await createEventRegistration(payload); 
+      const successLink = response.data?.link;
+
+      setFormStatus({
+        type: 'success',
+        message: 'Anda berhasil terdaftar!',
+        link: successLink || '',
+      });
     } catch (err) {
       console.error('Error response:', err.response?.data);
       const errorMessage =
         err.response?.data?.message || 'Gagal mendaftar. Silakan coba lagi.';
-      setFormStatus({ type: 'error', message: errorMessage });
+      setFormStatus({ type: 'error', message: errorMessage, link: '' });
     } finally {
       setIsSubmitting(false);
     }
@@ -107,5 +113,6 @@ export const usePendaftaran = () => {
     isSubmitting,
     submitRegistration,
     refetch: fetchEvents,
+    setFormStatus,
   };
 };
