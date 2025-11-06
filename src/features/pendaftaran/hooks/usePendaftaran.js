@@ -57,11 +57,7 @@ export const usePendaftaran = () => {
     }
 
     if (formData.nim) {
-      payload.append('nim', formData.nim.toString());
-    }
-
-    if (formData.nim && !isNaN(Number(formData.nim))) {
-      payload.append('nim', Number(formData.nim));
+      payload.append('nim', formData.nim);
     }
 
     if (formData.generation && !isNaN(Number(formData.generation))) {
