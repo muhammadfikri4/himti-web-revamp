@@ -21,7 +21,7 @@ export const usePendaftaran = () => {
         id: item.id,
         title: item.name,
         category: item.type,
-        image: item.image || `/images/himti-logo.png`,
+        image: item.image || `/images/bootcmp2025.jpg`,
         description:
           item.description ||
           `Pendaftaran untuk ${item.name} periode ${item.year}.`,
@@ -52,8 +52,12 @@ export const usePendaftaran = () => {
     payload.append('class', formData.class);
     payload.append('registrationTypeId', formData.registrationTypeId);
 
-    if (formData.image) {
-      payload.append('image', formData.image);
+    if (formData.phoneNumber) {
+      payload.append('phoneNumber', formData.phoneNumber);
+    }
+
+    if (formData.nim) {
+      payload.append('nim', formData.nim.toString());
     }
 
     if (formData.nim && !isNaN(Number(formData.nim))) {
@@ -64,6 +68,10 @@ export const usePendaftaran = () => {
       payload.append('generation', Number(formData.generation));
     }
 
+    if (formData.image) {
+      payload.append('image', formData.image);
+    }
+
     if (formData.eventId) {
       payload.append('eventId', formData.eventId);
     } else {
@@ -72,7 +80,7 @@ export const usePendaftaran = () => {
         message: 'Gagal memuat eventId. Coba refresh halaman.',
       });
       setIsSubmitting(false);
-      return; // Hentikan submit jika eventId tidak ada
+      return;
     }
 
     console.log('Payload API KELAR');
@@ -81,13 +89,19 @@ export const usePendaftaran = () => {
     }
 
     try {
-      await createEventRegistration(payload);
-      setFormStatus({ type: 'success', message: 'Anda berhasil terdaftar!' });
+      const response = await createEventRegistration(payload); 
+      const successLink = response.data?.link;
+
+      setFormStatus({
+        type: 'success',
+        message: 'Anda berhasil terdaftar!',
+        link: successLink || '',
+      });
     } catch (err) {
       console.error('Error response:', err.response?.data);
       const errorMessage =
         err.response?.data?.message || 'Gagal mendaftar. Silakan coba lagi.';
-      setFormStatus({ type: 'error', message: errorMessage });
+      setFormStatus({ type: 'error', message: errorMessage, link: '' });
     } finally {
       setIsSubmitting(false);
     }
@@ -103,5 +117,6 @@ export const usePendaftaran = () => {
     isSubmitting,
     submitRegistration,
     refetch: fetchEvents,
+    setFormStatus,
   };
 };

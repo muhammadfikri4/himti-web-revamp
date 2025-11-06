@@ -10,6 +10,7 @@ const PendaftaranSection = ({
   submitRegistration,
   isSubmitting,
   formStatus,
+  setFormStatus,
 }) => {
   return (
     <section className="py-20 animate-fade-in-up">
@@ -54,6 +55,7 @@ const PendaftaranSection = ({
           onSubmit={submitRegistration}
           isSubmitting={isSubmitting}
           formStatus={formStatus}
+          setFormStatus={setFormStatus}
         />
       )}
     </section>
