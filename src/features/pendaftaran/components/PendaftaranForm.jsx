@@ -156,11 +156,24 @@ const PendaftaranForm = ({
                     <label htmlFor="nim" className="block text-sm font-medium">
                       NIM
                     </label>
-                    <Input
+                   <Input
                       name="nim"
                       id="nim"
-                      onChange={handleChange}
+                      type="text"
+                      inputMode="numeric"
+                      onKeyDown={(e) => {
+                        if (
+                          !/[0-9]/.test(e.key) && 
+                          e.key !== "Backspace" &&
+                          e.key !== "Delete" &&
+                          e.key !== "ArrowLeft" &&
+                          e.key !== "ArrowRight"
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
                       value={formData.nim}
+                      onChange={handleChange}
                       required
                     />
                   </div>
@@ -210,10 +223,22 @@ const PendaftaranForm = ({
                       name="phoneNumber"
                       id="phoneNumber"
                       type="tel"
-                      onChange={handleChange}
+                      inputMode="numeric"
+                      onKeyDown={(e) => {
+                        if (
+                          !/[0-9]/.test(e.key) && 
+                          e.key !== "Backspace" && 
+                          e.key !== "Delete" && 
+                          e.key !== "ArrowLeft" && 
+                          e.key !== "ArrowRight"
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
                       value={formData.phoneNumber}
-                      required
+                      onChange={handleChange}
                     />
+
                   </div>                  
 
                   {isBootcamp && (
